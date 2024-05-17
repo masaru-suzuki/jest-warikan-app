@@ -46,4 +46,20 @@ describe('Integration Test', () => {
       expect(response.body).toEqual(testGroups);
     });
   });
+
+  describe('POST /groups', () => {
+    it('グループが追加できる', async () => {
+      const newGroup: Group = {
+        name: '鈴木家',
+        members: ['大', '伶奈', '萌生', '希実'],
+      };
+      const resultGroups: Group[] = [...testGroups, newGroup];
+      const response = await request(app).post('/groups').send(newGroup); // sendを使ってリクエストボディを送信
+      expect(response.status).toBe(200);
+      expect(response.text).toBe('グループの作成が成功しました');
+      // data/integration/groups.jsonの内容が更新されているか確認
+      const groups = JSON.parse(fs.readFileSync(GROUP_FILE_PATH, 'utf8'));
+      expect(groups).toEqual(resultGroups);
+    });
+  });
 });
