@@ -43,7 +43,7 @@ export class GroupController {
   ) => {
     try {
       let validatedInput: Group;
-      validatedInput = groupSchema.parse(req.body);
+      validatedInput = groupSchema.parse(req.body); // ここの説明がほしい
       const { name, members } = validatedInput;
 
       const groups = this.groupService.getGroups();
