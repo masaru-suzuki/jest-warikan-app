@@ -9,6 +9,8 @@ if (process.env.DATA_PATH) {
   throw new Error();
 }
 
+// appをexportすることで、他のテストファイルでappを使えるようにする
+// E2Eテスト中にapp.listenを呼び出すとテストが終了しないので、appをexportして他のテストファイルで使う
 app.listen(3000, () => {
   console.log('Start on port 3000');
 });
