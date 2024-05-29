@@ -1,5 +1,5 @@
-import { useState, useCallback, useEffect } from "react";
-import axios from "axios";
+import { useState, useCallback, useEffect } from 'react';
+import axios from 'axios';
 
 export const useApi = <T>(url: string) => {
   const [data, setData] = useState<T | null>(null);
@@ -10,7 +10,7 @@ export const useApi = <T>(url: string) => {
       const response = await axios.get(url);
       setData(response.data);
     } catch (err) {
-      setError("エラーが発生しました");
+      setError('エラーが発生しました');
     }
   }, [url]);
 
@@ -18,14 +18,14 @@ export const useApi = <T>(url: string) => {
     try {
       return await axios({
         url: postUrl,
-        method: "post",
+        method: 'post',
         data: postData,
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       });
     } catch (err) {
-      setError("エラーが発生しました");
+      setError('エラーが発生しました');
     }
   };
 
@@ -33,5 +33,6 @@ export const useApi = <T>(url: string) => {
     fetchData();
   }, [fetchData]);
 
+  // refetch
   return { data, error, refetch: fetchData, postData };
 };
