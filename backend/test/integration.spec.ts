@@ -41,7 +41,7 @@ describe('Integration Test', () => {
   // request.httpのテストみたいな感じ？
   describe('GET /groups', () => {
     it('全てのグループが取得できる', async () => {
-      const response = await request(app).get('/groups');
+      const response = await request(app).get('/groups'); //requestはsupertestの関数
       expect(response.status).toBe(200);
       expect(response.body).toEqual(testGroups);
     });
